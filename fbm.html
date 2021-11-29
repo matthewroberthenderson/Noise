@@ -57,8 +57,8 @@ void main()
    
     vec3 p = vec3(uv*16., 0.);
     float result = fnoise(p);
-	//gl_FragColor = vec4(vec3(result),1.0);
-	 gl_FragColor.rgb = vec3(gl_FragCoord.xy/resolution.xy);
+	gl_FragColor = vec4(vec3(result),1.0);
+	 //gl_FragColor.rgb = vec3(gl_FragCoord.xy/resolution.xy);
   
 
 }
