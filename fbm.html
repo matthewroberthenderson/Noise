@@ -20,6 +20,12 @@ precision highp float;
 
 
 
+uniform float time;
+uniform vec2 resolution;
+uniform vec2 Mouse;
+float zoom=1.5;
+
+
 float noise(vec3 x) {
     vec3 p = floor(x);
     vec3 f = fract(x);
