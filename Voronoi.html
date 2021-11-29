@@ -60,7 +60,9 @@ vec2 voronoi( in vec2 x )
 void main()
 {
 
-   vec2 p = fragCoord.xy/max(iResolution.x,iResolution.y);
+
+
+   vec2 p = gl_FragCoord.xy/max(resolution.x,resolution.y);
 
     vec2 c = voronoi( (14.0+6.0*sin(0.2))*p );
 
