@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+   <head>
+
+<script id="vertex" type="x-shader">
+attribute vec2 aVertexPosition;
+
+void main()
+{
+   gl_Position = vec4(aVertexPosition, 0.0, 1.0);
+}
+      </script>
+      
+      <script id="fragment" type="x-shader">
+
+
+#ifdef GL_ES
+precision highp float;
+#endif
+
+
+
+uniform float time;
+uniform vec2 resolution;
+uniform vec2 Mouse;
+float zoom=1.5;
+
+
+vec3 hash33(vec3 p3) {
+	vec3 p = fract(p3 * vec3(.1031,.11369,.13787));
+    p += dot(p, p.yxz+19.19);
+    return -1.0 + 2.0 * fract(vec3((p.x + p.y)*p.z, (p.x+p.z)*p.y, (p.y+p.z)*p.x));
+}
+
+float worley(vec3 p, float scale){
+
+    vec3 id = floor(p*scale);
+    vec3 fd = fract(p*scale);
+
+    float n = 0.;
+
+    float minimalDist = 1.;
+
+
+    for(float x = -1.; x <=1.; x++){
+        for(float y = -1.; y <=1.; y++){
+            for(float z = -1.; z <=1.; z++){
+
+                vec3 coord = vec3(x,y,z);
+                vec3 rId = hash33(mod(id+coord,scale))*0.5+0.5;
+
+                vec3 r = coord + rId - fd;
+
+                float d = dot(r,r);
+
+                if(d < minimalDist){
+                    minimalDist = d;
+                }
+
+            }//z
+        }//y
+    }//x
+
+    return 1.0-minimalDist;
+}
+
+
+
+void main( )
+{
+    // Normalized pixel coordinates (from 0 to 1)
+    vec2 uv = gl_FragCoord.xy/resolution.y;
+
+    vec3 p = vec3(uv, 0.1);
+}
+
+
+</script>
+      
+
+<script type="text/javascript">
+
+var aspect, gl;
+function init()
+{
+   // create webgl context on the canvas element
+   var canvas = document.getElementById("canvas");
+   aspect = canvas.width / canvas.height;
+   try
+   {
+      gl = canvas.getContext("experimental-webgl");
+   }
+   catch (e)
+   {
+      document.write("Whoops! No useful WEB-GL impl available. Are you browsing on your mum's Nokia?.<br>" + e.message);
+      return;
+   }
+   gl.viewport(0, 0, canvas.width, canvas.height);
+   gl.clearColor(0, 0, 0, 1);
+   gl.clear(gl.COLOR_BUFFER_BIT);
+   
+   // get the vertex and fragment shader source
+   var v = document.getElementById("vertex").firstChild.nodeValue;
+   var f = document.getElementById("fragment").firstChild.nodeValue;
+   
+   // compile and link the shaders
+   var vs = gl.createShader(gl.VERTEX_SHADER);
+   gl.shaderSource(vs, v);
+   gl.compileShader(vs);
+   
+   var fs = gl.createShader(gl.FRAGMENT_SHADER);
+   gl.shaderSource(fs, f);
+   gl.compileShader(fs);
+   
+   var program = gl.createProgram();
+   gl.attachShader(program, vs);
+   gl.attachShader(program, fs);
+   gl.linkProgram(program);
+   
+  // debug shader compile status
+   var error = false;
+   if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS))
+   {
+      error = true;
+      console.log(gl.getShaderInfoLog(vs));
+   }
+   
+   if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS))
+   {
+      error = true;
+      console.log(gl.getShaderInfoLog(fs));
+   }
+   
+   if (!gl.getProgramParameter(program, gl.LINK_STATUS))
+   {
+      error = true;
+      console.log(gl.getProgramInfoLog(program));
+   }
+   if (error) return;
+   
+   var pause = false;
+   var firstTime = Date.now();
+   (f = function() {
+      if (!pause)
+      {
+         var vertices = new Float32Array(
+            [
+               -1, 1*aspect, 1, 1*aspect, 1, -1*aspect,
+               -1, 1*aspect, 1, -1*aspect, -1, -1*aspect
+            ]);
+         
+         var vbuffer = gl.createBuffer();
+         gl.bindBuffer(gl.ARRAY_BUFFER, vbuffer);
+         gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+         
+         var triCount = 2,
+             numItems = vertices.length / triCount;
+         
+         gl.useProgram(program);
+         var time = (Date.now() - firstTime) / 1000.0;
+         program.time = gl.getUniformLocation(program, "time");
+         gl.uniform1f(program.time, time);
+         program.resolution = gl.getUniformLocation(program, "resolution");
+         gl.uniform2f(program.resolution, canvas.width, canvas.height);
+
+
+         
+         program.aVertexPosition = gl.getAttribLocation(program, "aVertexPosition");
+         gl.enableVertexAttribArray(program.aVertexPosition);
+         gl.vertexAttribPointer(program.aVertexPosition, triCount, gl.FLOAT, false, 0, 0);
+         
+         gl.drawArrays(gl.TRIANGLES, 0, numItems);
+      }
+      requestAnimationFrame(f);
+   })();
+  
+}
+      </script>
+
+    
+   </head>
+  <body onload="init()" style="
+    background: black;
+    color: white;
+    font-family: monospace;
+    font-size: 200%;
+    text-align: center;
+">
+     
+   
+	  <canvas id="canvas" width="1024%" height="960%" margin="0-auto" style="
+    margin: 0 auto;
+    width: 50%;
+"></canvas>
+   
+    <a href="matthewroberthenderson.github.io/noise/" style="
+    color: white;
+    /* -webkit-text-decorations-in-effect: none; */
+"><p><</p></a>
+   
+
+</body>
+</html>
