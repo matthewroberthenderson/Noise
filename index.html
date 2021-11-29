@@ -1,0 +1,284 @@
+<html>
+  
+
+<body>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Abel|Unica+One|Montserrat|Anton" rel="stylesheet">
+
+  
+<style>
+    
+body {
+margin-top: 0px; 
+  margin-bottom: 50px;
+  background-color: #0D0D0D;
+}
+
+header {
+  margin-top: 75px;
+  margin-bottom: 75px;
+}
+
+.navbar-left {
+  margin-left: 75px;
+}
+
+.navbar-right {
+  margin-right: 50px;
+}
+
+.navbar-custom {
+  background: #000;
+  box-shadow: 0px 0px 20px #050505;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.navigation {
+  font-family: 'Abel', monospace;
+  font-size: 16px;
+  text-shadow: 0px 0px 0.5px #F73434;
+  font-weight: bold;
+  letter-spacing: 3px;
+
+}
+
+section {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+.red-face {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.red-squeaks {
+  font-size: 20px;
+  font-weight: bold;
+  color: transparent;
+  text-shadow: 0px 0px 0.75px #C73232;
+  letter-spacing: 14px;
+  white-space: nowrap;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.red-speaks {
+  font-family: 'Unica One', monospace;
+  font-size: 70px;
+  font-weight: bold;
+  color: transparent;
+  text-shadow: 0px 0px 1px #C73232;
+  margin-top: -32px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.red-says {
+  font-family: 'Unica One', monospace;
+  font-size: 18px;
+  color: transparent;
+  text-shadow: 0px 0px 0.5px #d4b85f;
+  margin-top: -30px;
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: 5px;
+}
+
+hr {
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(196, 196, 69, 0.2), #EB2F2F, rgba(196, 196, 69, 0.2), rgba(0, 0, 0, 0));
+}
+
+.section-headers {
+  font-family: 'Abel', monospace;
+  font-size: 30px;
+  font-weight: bold;
+  color: transparent;
+  text-shadow: 0px 0px 0.25px #C73232;
+  letter-spacing: 3px;
+  margin-bottom: 50px;
+}
+
+.attributes-text {
+  font-family: 'Unica One', monospace;
+  color: transparent;
+  text-shadow: 0px 0px 0.5px #d4b85f;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.section-paragraph {
+  font-family: 'Abel', monospace;
+  font-size: 20px;
+  color: transparent;
+  text-shadow: 0px 0px 0.5px #d4b85f;
+  margin-top: 30px;
+}
+
+.progress {
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, rgba(180, 180, 180, 1) 0%, rgba(245, 245, 245, 1) 100%);
+}
+
+.progress-bar {
+  background: #D10845;
+}
+
+
+.inventory-row {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.social-media {
+  text-align: center;
+  margin-top: 75px;
+  margin-bottom: 75px;
+}
+
+.social-paragraph {
+  font-family: 'Abel', monospace;
+  font-size: 20px;
+  text-align: justify;
+  width: 50%;
+  margin: auto;
+  color: transparent;
+  text-shadow: 0px 0px 0.25px #C73232;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+.form-text {
+  font-family: 'Abel', monospace;
+  font-size: 12px;
+  text-align: right;
+  letter-spacing: 2px;
+  width: 50%;
+  height: 20px;
+  margin: auto;
+  overflow: scroll;
+  margin-bottom: 20px;
+}
+
+.btn {
+  font-family: 'Abel', monospace;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  width: 50%;
+  height: 30px;
+  color: #000;
+  background-color: #DE0037;
+}
+
+.submit-button {
+  text-align: center;
+}
+
+/*
+
+.crafting-pill {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.crafting-bar {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+.myLevel {
+  font-family: 'Unica One', monospace;
+  font-size: 47px;
+  font-weight: bold;
+  color: transparent;
+  text-shadow: 0px 0px 0.5px #CF1B42;
+  letter-spacing: 1px;
+}
+
+
+    
+</style>
+    
+</head>
+
+<div class="container">
+  <header>
+
+    <p class="Red-squeaks"><span class="rotate">010101</p>
+    <p class="red-speaks">Noise Functions</p>
+    <p class="red-says">Simple WebGL implementations</p>  
+  </header>
+
+  <hr id="attributes"></hr>
+
+  <section>
+    <p class="section-headers text-center">Function List</p>
+      <div class="row">
+        <div class="col-xs-6">
+          <ul>
+            <li>
+              <div class="red-says">FBM</div>
+               <div class="attributes-text">Expense</div>
+              <div class="progress">
+                <a href="/fbm.html">  <div class="progress-bar" style="width:20%"></div></a>
+              </div>
+            </li>
+            <li>
+              <div class="attributes-text">Fractal Noise</div>
+              <div class="progress">
+                <div class="progress-bar" style="width:25%"></div>
+              </div>
+            </li>
+            <li>
+              <div class="attributes-text">Cell Noise</div>
+              <div class="progress">
+                <div class="progress-bar" style="width:5%"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-6">
+          <ul style="list-style:none;">
+            <li>
+              <div class="attributes-text" style="text-align:right;">Vornoi</div>
+              <div class="progress">
+                <div class="progress-bar" style="width:3%"></div>
+              </div>
+            </li>
+            <li>
+              <div class="attributes-text" style="text-align:right;">Worley</div>
+              <div class="progress">
+                <div class="progress-bar" style="width:1%"></div>
+              </div>
+            </li>
+            <li>
+              <div class="attributes-text" style="text-align:right;">Simple Noise</div>
+              <div class="progress">
+                <div class="progress-bar" style="width:1%"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+   
+  </section>
+
+  </body>
+  
+  
+</html>
